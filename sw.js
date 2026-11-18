@@ -1,7 +1,8 @@
 // Busca primeiro na rede (o site se atualiza sozinho) e usa a cópia local quando não há internet.
 // Guarda somente arquivos do site. Respostas e chamadas ao banco nunca passam pelo cache.
-const CACHE = "acomp-site-v1";
+const CACHE = "acomp-site-v2";
 const ARQ = ["./","index.html","styles.css","app.js","config.js","demo.js","demo-dados.js","manifest.json","versao.json",
+  "assets/marca/mais-verde.png","assets/marca/casinha-branca.png","assets/marca/vertical-branco.png",
   "assets/logos/horizontal-branco.png","assets/logos/vertical.png","assets/logos/casinha.png","assets/icone-192.png","assets/apple-touch-icon.png",
   "assets/fonts/inter-latin-400-normal.woff2","assets/fonts/inter-latin-500-normal.woff2","assets/fonts/inter-latin-600-normal.woff2",
   "assets/fonts/space-grotesk-latin-600-normal.woff2","assets/fonts/space-grotesk-latin-700-normal.woff2"];
