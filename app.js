@@ -99,7 +99,7 @@ async function desenha() {
 /* Apelido na frente do nome; só aparece quando acrescenta algo ao nome */
 const nk2 = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().trim();
 const quem = j => { const ap = String(j.apelido || "").trim(); return ap && nk2(ap) !== nk2(j.nome) ? `<span class="apel">${esc(ap)}</span> ${esc(j.nome)}` : esc(j.nome); };
-const chamar = j => esc(String(j.apelido || "").trim() || String(j.nome || "").split(" ")[0]);
+const apelidoOu = j => esc(String(j.apelido || "").trim() || String(j.nome || "").split(" ")[0]);
 const coord = j => /^COORDENADOR/.test(nk2(j.funcao));
 const lideranca = j => [j.gerente && `Gerente ${esc(j.gerente)}`, j.superintendente && `Superint. ${esc(j.superintendente)}`, j.diretor && `Diretor ${esc(j.diretor)}`].filter(Boolean).join(" · ") || "Sem gerente";
 const tudo = () => dados.jornadas.flatMap(j => j.etapas.map(e => ({ j, e })));
@@ -109,9 +109,9 @@ function vHoje() {
   const kpi = (n, txt, alvo, cor) => n ? `<button class="kpi ${cor}" ${alvo}><b>${n}</b><span>${txt}</span></button>` : `<div class="kpi zero"><b>0</b><span>${txt}</span></div>`;
   const prox = l.filter(x => x.e.status === "futura").sort((a, b) => a.e.inicio < b.e.inicio ? -1 : 1)[0];
   /* Próximo passo calculado a partir dos dados do dia */
-  const fala = an.length ? [`${chamar(an[0].j)} começou a responder e parou no meio. Dá para continuar de onde ficou.`, "dica"]
-    : af.length ? [`${af.length === 1 ? "Tem uma pessoa" : `São ${af.length} pessoas`} para ouvir. Comece por ${chamar(af[0].j)}: ${prazo(af[0].e, dados.hoje)[1].toLowerCase()}.`, "dica"]
-    : at.length ? [`${at.length === 1 ? `A etapa de ${chamar(at[0].j)} passou` : `${at.length} etapas passaram`} da janela. Ainda dá para aplicar.`, "atencao"]
+  const fala = an.length ? [`${apelidoOu(an[0].j)} começou a responder e parou no meio. Dá para continuar de onde ficou.`, "dica"]
+    : af.length ? [`${af.length === 1 ? "Tem uma pessoa" : `São ${af.length} pessoas`} para ouvir. Comece por ${apelidoOu(af[0].j)}: ${prazo(af[0].e, dados.hoje)[1].toLowerCase()}.`, "dica"]
+    : at.length ? [`${at.length === 1 ? `A etapa de ${apelidoOu(at[0].j)} passou` : `${at.length} etapas passaram`} da janela. Ainda dá para aplicar.`, "atencao"]
     : [`Tudo em dia por aqui!${prox ? ` A próxima janela abre em ${dtc(prox.e.inicio)}.` : ""}`, "comemora"];
   const h = new Date().getHours(), saud = h < 12 ? "Bom dia" : h < 18 ? "Boa tarde" : "Boa noite";
   const vazio = `<div class="vazio"><b>Ninguém na janela hoje</b>${prox ? `A próxima abre em ${dtc(prox.e.inicio)}: ${esc(prox.j.nome)}, etapa de ${prox.e.etapa} dias.` : "Quando alguém entrar na janela de 15, 30, 60 ou 90 dias, aparece aqui."}</div>`;
