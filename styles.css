@@ -382,6 +382,8 @@ details.tratados .painel{margin-top:10px}
 @keyframes aterrissa{0%{opacity:0;transform:scale(.4) rotate(-20deg)}60%{opacity:1;transform:scale(1.1) rotate(4deg)}100%{transform:none}}
 .devolva{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--tinta);font-weight:700;padding:14px 22px;border-radius:var(--rp);margin-top:10px;font-size:17px;box-shadow:0 8px 20px -10px rgba(0,0,0,.4)}
 .devolva svg{width:24px;height:24px;color:var(--mc-2)}
+.fim-c .volta-rh{margin-top:28px;background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.7);min-height:52px;padding:0 24px;font-size:17px}
+.fim-c .volta-rh:hover{background:rgba(255,255,255,.12)}
 /* Confete: um único momento, com as formas da marca */
 .confete{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .confete i{position:absolute;top:42%;left:50%;width:14px;height:26px;opacity:0;animation:voa 1300ms var(--ease) forwards}

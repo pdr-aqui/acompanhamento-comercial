@@ -238,7 +238,7 @@ let nomeFim = null;
 function telaFim(ok) { solta(); ultPct = 0; ultQ = null; const festa = ok && nomeFim; nomeFim = null;
   const marca = ok ? `<svg class="selo-fim" viewBox="0 0 112 112" aria-hidden="true"><circle cx="56" cy="56" r="56"/><path d="M34 58l15 15 30-32"/></svg>` : `<svg class="selo-fim pend" viewBox="0 0 112 112" aria-hidden="true"><circle cx="56" cy="56" r="56"/><path d="M56 34v24l15 9"/></svg>`;
   const confete = festa && !MENOS_MOV() ? `<div class="confete" aria-hidden="true">${Array.from({ length: 28 }, (_, i) => `<i class="c${i % 3 + 1}"></i>`).join("")}</div>` : "";
-  $app.innerHTML = `<div class="fim-tela${ok ? "" : " pend"}">${FAC}${confete}${selo()}${topoMarca()}<div class="fim-c" role="status">${marca}<h1>${ok ? "Respostas enviadas!" : "Respostas guardadas no tablet"}</h1><p>${ok ? "Obrigado por contar como está sendo sua experiência." : "Elas serão enviadas sozinhas assim que a internet voltar. Não precisa responder de novo."}</p><div class="devolva">${IC.tablet}Agora, entregue o tablet ao RH</div></div></div>`;
+  $app.innerHTML = `<div class="fim-tela${ok ? "" : " pend"}">${FAC}${confete}${selo()}${topoMarca()}<div class="fim-c" role="status">${marca}<h1>${ok ? "Respostas enviadas!" : "Respostas guardadas no tablet"}</h1><p>${ok ? "Obrigado por contar como está sendo sua experiência." : "Elas serão enviadas sozinhas assim que a internet voltar. Não precisa responder de novo."}</p><div class="devolva">${IC.tablet}Agora, entregue o tablet ao RH</div><button class="btn volta-rh" data-a="voltarh">Sou do RH: voltar ao painel</button></div></div>`;
   $app.querySelectorAll(".confete i").forEach(e => { const a = Math.random() * Math.PI * 2, d = 160 + Math.random() * 340; e.style.setProperty("--dx", Math.cos(a) * d + "px"); e.style.setProperty("--dy", Math.sin(a) * d - 60 + "px"); e.style.setProperty("--rot", Math.round(Math.random() * 720 - 360) + "deg"); e.style.animationDelay = Math.round(Math.random() * 140) + "ms"; });
   if (!ok && !F.espera) { F.espera = 1; const t = setInterval(async () => { if (!F || !F.pendente) { clearInterval(t); if (!F && !rhS) tela(); return; } if (await tentaEnvio()) { clearInterval(t); if (!rhS) tela(); } }, 8000); }
 }
@@ -264,6 +264,7 @@ document.addEventListener("click", async ev => {
   if (D.ed) { sentido = 1; F.atual = D.ed; F.fase = "perguntas"; F.revendo = true; guardaF(); return tela(); }
   switch (D.a) {
     case "fecha": return fechaM(); case "desbloq": return dlgDesbloq();
+    case "voltarh": if (rhS && perfil) return vai("hoje"); return dlgDesbloq();
     case "sair": await sairRH(); perfil = null; dados = null; return F ? tela() : telaLogin();
     case "comecar": F.fase = "perguntas"; F.inicio = Date.now(); F.atual = visiveis()[0].id; salvaAgora(); return tela();
     case "segue": return avanca();
