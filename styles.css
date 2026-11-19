@@ -155,6 +155,9 @@ button.kpi:active{transform:translateY(0) scale(.98)}
 .item:hover{background:#FCFAFA}
 .item .tx{min-width:0}
 .item .nome{font:700 18.5px/1.2 "Space Grotesk",Inter,sans-serif;color:var(--tinta);display:block}
+.item.clicavel{cursor:pointer}
+.item button.nome{text-align:left;border-radius:4px}
+.item.clicavel:hover .nome{color:var(--mc-2);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:2px}
 .item .meta{color:var(--grafite);font-size:14px;margin-top:3px}
 .item .acoes{display:flex;gap:8px;justify-content:flex-end}
 .item.proxima{background:linear-gradient(90deg,#F0FAF3,#fff 60%);box-shadow:inset 5px 0 0 var(--verde-2)}
