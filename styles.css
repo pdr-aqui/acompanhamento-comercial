@@ -60,6 +60,8 @@ label{display:block;font-weight:600;margin:0 0 6px;font-size:15px}
 .btn.txt{background:none;color:var(--grafite);padding:12px 14px;box-shadow:none;font-weight:600}
 .btn.txt:hover{color:var(--tinta);background:var(--nevoa)}
 .btn.peq{min-height:44px;padding:8px 16px 11px;font-size:15px}
+.btn.cinza{background:#DCD7D8;color:var(--grafite);box-shadow:inset 0 -4px 0 #B9B1B3}
+.btn.cinza:hover{background:#CFC9CA}
 .btn.peq:active{padding-bottom:9px}
 .btn.txt.peq{padding:8px 12px}
 .btn svg{width:20px;height:20px}
